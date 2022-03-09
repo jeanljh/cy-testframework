@@ -4,7 +4,7 @@
   "description": "example of automation test framework design with page object model",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "cypress run -b chrome",
+    "test:chrome": "cypress run --browser chrome",
     "test": "npx cypress run --headed --record --key 445c0641-fdc1-4132-b674-414e94c324f1",
     "report:merge": "mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json",
     "report:gen": "marge mochawesome.json --reportDir public --assetsDir public/assets --reportPageTitle mochawesome.html",
