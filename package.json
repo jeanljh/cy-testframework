@@ -6,10 +6,10 @@
   "scripts": {
     "test:chrome": "cypress run --browser chrome",
     "test": "npx cypress run --headed --record --key 445c0641-fdc1-4132-b674-414e94c324f1",
-    "report:merge": "mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json",
-    "report:gen": "marge mochawesome.json --reportDir public --assetsDir public/assets --reportPageTitle mochawesome.html",
-    "mocha-merge": "mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && marge mochawesome.json",
-    "del-mocha-res": "del-cli cypress/results/mochawesome/*",
+    "report:merge": "mochawesome-merge cypress/results/json/*.json > mochawesome.json",
+    "report:gen": "marge mochawesome.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "mocha-merge": "mochawesome-merge cypress/results/json/*.json > mochawesome.json && marge mochawesome.json",
+    "del-mocha-res": "del-cli cypress/results/json/*",
     "del-mocha-rep": "del-cli mochawesome-report/*",
     "test-full": "npm run del-mocha-rep && npm run del-mocha-res && npm run test && npm run mocha-merge"
   },
