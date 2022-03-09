@@ -4,13 +4,11 @@
   "description": "example of automation test framework design with page object model",
   "main": "index.js",
   "scripts": {
+    "test:chrome": "cypress run -b chrome",
     "test": "npx cypress run --headed --record --key 445c0641-fdc1-4132-b674-414e94c324f1",
-    "report-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
-    "report-del": "rm -rf cypress/results/junit/result.xml",
-    "report-del-res": "rm -rf cypress/results/* || true",
-    "del-res": "del-cli cypress/results/junit/result.xml",
-    "del-res-folder": "del-cli cypress/results/junit",
-    "mocha-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
+    "report:merge": "mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json",
+    "report:gen": "marge mochawesome.json --reportDir public --assetsDir public/assets --reportPageTitle mochawesome.html",
+    "mocha-merge": "mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && marge mochawesome.json",
     "del-mocha-res": "del-cli cypress/results/mochawesome/*",
     "del-mocha-rep": "del-cli mochawesome-report/*",
     "test-full": "npm run del-mocha-rep && npm run del-mocha-res && npm run test && npm run mocha-merge"
