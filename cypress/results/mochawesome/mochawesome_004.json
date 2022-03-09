@@ -1,0 +1,226 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 6,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-03-09T06:30:20.263Z",
+    "end": "2022-03-09T06:31:31.602Z",
+    "duration": 71339,
+    "testsRegistered": 7,
+    "passPercent": 85.71428571428571,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c289a6da-9268-471d-9df7-5152504292b5",
+      "title": "",
+      "fullFile": "cypress/integration/flights-search.spec.js",
+      "file": "cypress/integration/flights-search.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+          "title": "Flights search test suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test default selected tab",
+              "fullTitle": "Flights search test suite Test default selected tab",
+              "timedOut": null,
+              "duration": 7899,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.lstMenu().filter('.active').should('have.text', 'Flights'); // another way\n// flightSearch.tabFlight().invoke('attr', 'class').should('include', 'active')\n// another way\n// cy.get('.list-one').children().each(e => {\n//     if (e.hasClass('cff-list-tab active')) {\n//         expect(e.text()).to.contain('Flights')\n//     }\n// })",
+              "err": {},
+              "uuid": "ab9ebee6-0f1f-422b-abc4-7e6639e8149c",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test round trip and oneway options",
+              "fullTitle": "Flights search test suite Test round trip and oneway options",
+              "timedOut": null,
+              "duration": 7287,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.rbtnRoundTrip().should('be.checked');\n_flightsSearch.default.rbtnOneWay().should('not.be.checked');\n_flightsSearch.default.lnkAdvSearch().click({\n  force: true\n}); // select one way\n\n_flightsSearch.default.rbtnOneWay().check({\n  force: true\n}).should('be.checked').and('be.enabled');\n_flightsSearch.default.tfReturnDate().should('not.be.visible').and('not.be.enabled');\n_flightsSearch.default.tfReturnFromCity().should('not.be.visible').and('be.enabled');\n_flightsSearch.default.tfReturnToCity().should('not.be.visible').and('be.enabled'); // select round trip\n\n_flightsSearch.default.rbtnRoundTrip().check({\n  force: true\n}).should('be.checked').and('be.enabled');\n_flightsSearch.default.tfReturnDate().should('be.visible').and('be.enabled');\n_flightsSearch.default.tfReturnFromCity().invoke('removeAttr', 'type').should('be.visible').and('be.enabled');\n_flightsSearch.default.tfReturnToCity().invoke('removeAttr', 'type').should('be.visible').and('be.enabled');",
+              "err": {},
+              "uuid": "a17d8b86-3ec7-4ac4-a4a3-b4da085a1f1e",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test unaccompanied minor",
+              "fullTitle": "Flights search test suite Test unaccompanied minor",
+              "timedOut": null,
+              "duration": 10077,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.txtInfo().should('not.exist');\n_flightsSearch.default.lnkInfo().should('be.visible').click({\n  force: true\n});\n_flightsSearch.default.txtInfo().should('exist').and('contain', _flight.default.info).find('button').click();\n_flightsSearch.default.txtInfo().should('not.exist');",
+              "err": {},
+              "uuid": "b7d8d374-a808-423f-a722-759bb10a37bb",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test select passengers",
+              "fullTitle": "Flights search test suite Test select passengers",
+              "timedOut": null,
+              "duration": 8035,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.SelectPerson(_flight.default.person);",
+              "err": {},
+              "uuid": "9d81a95b-a1c1-41df-b6d8-d6b8faf0ddc6",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test origin field",
+              "fullTitle": "Flights search test suite Test origin field",
+              "timedOut": null,
+              "duration": 8658,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.tfFromCity().invoke('attr', 'placeholder', 'From City').should('have.attr', 'placeholder', 'From City').type(_flight.default.origin);\n_flightsSearch.default.menuAutoSuggest().each(e => expect(e.text()).to.contain(_flight.default.origin)).first().as('firstRow').type('{enter}');\n_flightsSearch.default.tfFromCity().invoke('val').then(v => {\n  cy.get('@firstRow').should('contain', v);\n});",
+              "err": {},
+              "uuid": "1c6bec86-8fb8-415f-b71b-61d230c2dd2e",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test select airlines",
+              "fullTitle": "Flights search test suite Test select airlines",
+              "timedOut": null,
+              "duration": 10859,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.lnkAdvSearch().click({\n  force: true\n});\n_flightsSearch.default.ddlSelectAirline().find('option').invoke('text').as('allOptions');\n_flightsSearch.default.ddlSelectAirline().select(_flight.default.airlines).find('option:selected').invoke('text').then(t => t.trim()).should('eq', _flight.default.airlines); // .then(t => expect(t.trim()).to.eq(data.airlines)) // another way\n\n_flightsSearch.default.ddlSelectAirline().children().invoke('text').then(act => {\n  cy.get('@allOptions').then(exp => expect(act).to.equal(exp));\n});",
+              "err": {},
+              "uuid": "9d7d93e8-4170-4951-b87c-133ed35239cc",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test empty text fields",
+              "fullTitle": "Flights search test suite Test empty text fields",
+              "timedOut": null,
+              "duration": 18307,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "_flightsSearch.default.btnSearch().click();\n_flightsSearch.default.tfFromCity().should('have.css', 'border', '2px solid rgb(255, 0, 0)');\n_flightsSearch.default.tfToCity().should('have.css', 'border', '2px solid rgb(255, 0, 0)');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: expected '<input#froCity.form-control.input_cont.input-lg.ui-autocomplete-input.pick.ng-pristine.ng-untouched.ng-valid.error>' to have CSS property 'border' with the value '2px solid rgb(255, 0, 0)', but the value was '2px solid rgb(204, 199, 199)'",
+                "estack": "AssertionError: Timed out retrying after 10000ms: expected '<input#froCity.form-control.input_cont.input-lg.ui-autocomplete-input.pick.ng-pristine.ng-untouched.ng-valid.error>' to have CSS property 'border' with the value '2px solid rgb(255, 0, 0)', but the value was '2px solid rgb(204, 199, 199)'\n    at Context.eval (https://www.cheapflightsfares.com/__cypress/tests?p=cypress\\integration\\flights-search.spec.js:246:41)",
+                "diff": "- '2px solid rgb(204, 199, 199)'\n+ '2px solid rgb(255, 0, 0)'\n"
+              },
+              "uuid": "61274b32-11ae-4836-865e-6e3e1292a900",
+              "parentUUID": "8bd11fae-d8f0-465f-bd06-868c7d6631ca",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ab9ebee6-0f1f-422b-abc4-7e6639e8149c",
+            "a17d8b86-3ec7-4ac4-a4a3-b4da085a1f1e",
+            "b7d8d374-a808-423f-a722-759bb10a37bb",
+            "9d81a95b-a1c1-41df-b6d8-d6b8faf0ddc6",
+            "1c6bec86-8fb8-415f-b71b-61d230c2dd2e",
+            "9d7d93e8-4170-4951-b87c-133ed35239cc"
+          ],
+          "failures": [
+            "61274b32-11ae-4836-865e-6e3e1292a900"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 71122,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}

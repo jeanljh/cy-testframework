@@ -1,0 +1,9 @@
+{
+    "uid": "qatest@gmail.com",
+    "pin": "1234",
+    "city": "Kuala Lumpur",
+    "id": 0,
+    "room": 4,
+    "adult": [1, 2, 3, 4, 5],
+    "child": [1, 2, 3, 4, 5]
+}
