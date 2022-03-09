@@ -22,7 +22,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v3.0.0
         
@@ -30,8 +29,13 @@ jobs:
         run: 
           npm ci
           $(npm bin)/verify cypress
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+        
+      - name: Delete mochawesome html report
         run: npm run del-mocha-rep
+        
+      - name: Delete mochawesome json report
+        run: npm run del-mocha-res
+        
+      - name: Create mochawesome html report
+        run: npm run mocha-merge
 
