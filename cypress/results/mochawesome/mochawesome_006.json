@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-03-09T11:56:56.476Z",
+    "end": "2022-03-09T11:57:48.951Z",
+    "duration": 52475,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "548a2ef3-69f3-413b-badf-91d84b22703b",
+      "title": "",
+      "fullFile": "cypress/integration/car-search.spec.js",
+      "file": "cypress/integration/car-search.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+          "title": "Car search test suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test default selected arrival and departure time",
+              "fullTitle": "Car search test suite Test default selected arrival and departure time",
+              "timedOut": null,
+              "duration": 10892,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "_carSearch.default.ddlPickTime().find('option:selected').invoke('val').should('eq', '10:00');\n_carSearch.default.ddlDropTime().find('option:selected').invoke('val').should('eq', '10:00');",
+              "err": {},
+              "uuid": "059f58bb-5daa-4f8b-8b7c-0c064593de3a",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test select driver age",
+              "fullTitle": "Car search test suite Test select driver age",
+              "timedOut": null,
+              "duration": 8467,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "_carSearch.default.tabCar().click();\n_carSearch.default.ddlDriverAge().as('driverAge').find('option:selected').should('have.text', 'Between 30 - 65?');\n_carSearch.default.ddlDriverAge().select('Below 30').find(':selected').should('have.text', 'Below 30');\n_carSearch.default.txtTooltip() // .as('tooltip')\n.should('have.text', 'Additional Fee may apply for driver under 30 Yrs or above 65 Yrs old, at the time of rental. Please check term and conditions on payment page.').and('not.be.visible').parent().invoke('css', 'display', 'inherit') // .invoke('attr', 'style', 'display:inherit')\n.children('p') // .get('@tooltip')\n.should('be.visible');",
+              "err": {},
+              "uuid": "6679c604-6647-4eb5-841c-651822091841",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test get vendor type",
+              "fullTitle": "Car search test suite Test get vendor type",
+              "timedOut": null,
+              "duration": 7076,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "const objData = {};\nobjData['vendorCode'] = [];\n_carSearch.default.tabCar().click();\n_carSearch.default.lnkAdvOption().click({\n  force: true\n});\n_carSearch.default.ddlVendorCode().find(':selected').should('have.text', 'Car Company');\n_carSearch.default.ddlVendorCode().find('option').should('have.length.gt', 0).each(e => objData['vendorCode'].push(e.text()));\ncy.writeFile('data.json', objData);",
+              "err": {},
+              "uuid": "b71edb40-f409-4c02-834a-d0cb68365ba0",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test get vehicle type",
+              "fullTitle": "Car search test suite Test get vehicle type",
+              "timedOut": null,
+              "duration": 9941,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "const objData = {};\nobjData['vehicleType'] = [];\n_carSearch.default.tabCar().click();\n_carSearch.default.lnkAdvOption().click({\n  force: true\n});\n_carSearch.default.ddlVehicleType().find(':selected').should('have.text', 'Car Type');\n_carSearch.default.ddlVehicleType().find('option').should('have.length.gt', 0).each(e => objData['vehicleType'].push(e.text()));\ncy.writeFile('data.json', objData);",
+              "err": {},
+              "uuid": "72d75c2d-cf86-4026-a136-a2dd886aa2fb",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test vendor code options",
+              "fullTitle": "Car search test suite Test vendor code options",
+              "timedOut": null,
+              "duration": 7257,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "const arrRes = [];\n_carSearch.default.ddlVendorCode().find('option').each(e => arrRes.push(e.text()));\ncy.wrap(arrRes).should('deep.equal', _car.default.vendorCode);",
+              "err": {},
+              "uuid": "c4193e1d-7237-445e-8a14-dcbd0ee90aa5",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test vehicle type options",
+              "fullTitle": "Car search test suite Test vehicle type options",
+              "timedOut": null,
+              "duration": 8665,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/car-search.spec.js.mp4\"",
+              "code": "const arrRes = [];\n_carSearch.default.ddlVehicleType().find('option').each(e => cy.wrap(e).invoke('text').then(t => arrRes.push(t)));\ncy.wrap(arrRes).should('deep.equal', _car.default.vehicleType);",
+              "err": {},
+              "uuid": "587e4400-7f52-473c-a779-233f39659113",
+              "parentUUID": "f8991226-a0ec-47f2-a98d-fd3b7255a697",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "059f58bb-5daa-4f8b-8b7c-0c064593de3a",
+            "6679c604-6647-4eb5-841c-651822091841",
+            "b71edb40-f409-4c02-834a-d0cb68365ba0",
+            "72d75c2d-cf86-4026-a136-a2dd886aa2fb",
+            "c4193e1d-7237-445e-8a14-dcbd0ee90aa5",
+            "587e4400-7f52-473c-a779-233f39659113"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 52298,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}
