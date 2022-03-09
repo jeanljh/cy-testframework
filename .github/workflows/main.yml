@@ -36,6 +36,11 @@ jobs:
       - name: Delete mochawesome json report
         run: npm run del-mocha-res
         
+      - name: Cypress run
+        uses: cypress-io/github-action@v2.9.7
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create mochawesome html report
         run: npm run mocha-merge
-
