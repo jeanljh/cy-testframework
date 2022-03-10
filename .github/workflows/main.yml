@@ -1,8 +1,6 @@
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: master
   pull_request:
@@ -10,18 +8,16 @@ on:
   schedule:
     - cron: '0 0 * * *' 
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    #container: cypress/browsers:node16.14.0-slim-chrome99-ff97
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3]
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
@@ -38,9 +34,20 @@ jobs:
         with:
           path: ./cypress/results/json
       
-      - name: Run Cypress tests
-        run: npm run test:chrome
-        continue-on-error: true
+#       - name: Run Cypress tests
+#         run: npm run test:chrome
+#         continue-on-error: true
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2.9.7
+        with:
+          browser: chrome
+          parallel: true
+          record: true
+          group: cy-testframework
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Copy test execution videos
         run: |
