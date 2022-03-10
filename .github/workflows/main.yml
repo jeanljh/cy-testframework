@@ -13,10 +13,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3]
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         containers: [1, 2, 3]
 
     steps:
       - name: Checkout
@@ -34,20 +34,20 @@ jobs:
         with:
           path: ./cypress/results/json
       
-#       - name: Run Cypress tests
-#         run: npm run test:chrome
-#         continue-on-error: true
+      - name: Run Cypress tests
+        run: npm run test:chrome
+        continue-on-error: true
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v2.9.7
-        with:
-          browser: chrome
-          parallel: true
-          record: true
-          group: cy-testframework
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v2.9.7
+#         with:
+#           browser: chrome
+#           parallel: true
+#           record: true
+#           group: cy-testframework
+#         env:
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Copy test execution videos
         run: |
