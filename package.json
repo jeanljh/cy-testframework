@@ -1,7 +1,7 @@
 {
   "name": "cy-testframework",
   "version": "1.0.0",
-  "description": "example of automation test framework design with page object model",
+  "description": "example of automation test framework design with cypress, page object model & mochawesome",
   "main": "index.js",
   "scripts": {
     "test:chrome": "cypress run --browser chrome",
