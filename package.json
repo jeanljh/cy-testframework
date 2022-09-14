@@ -16,9 +16,9 @@
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.6.0",
-    "cypress-multi-reporters": "^1.6.0",
-    "cypress-xpath": "^1.6.2",
+    "cypress": "^10.8.0",
+    "cypress-multi-reporters": "^1.6.1",
+    "cypress-xpath": "^1.8.0",
     "del-cli": "^4.0.1",
     "mocha-junit-reporter": "^2.0.2",
     "mochawesome": "^7.1.3",

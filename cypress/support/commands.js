@@ -28,7 +28,7 @@ const { times, map, sum } = Cypress._
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('SelectPerson', p => {
+Cypress.Commands.add('selectPerson', p => {
     cy.wrap(p.adult + p.children + p.infantLap + p.infantSeat).as('totalPerson').should('not.be.gt', 9)
     flightsSearchPO.ddlTraveler().should('not.be.visible')
     flightsSearchPO.tfPerson().click().should('have.prop', 'readonly', true).and('have.prop', 'placeholder', '1 Adult, Economy')

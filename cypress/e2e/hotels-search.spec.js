@@ -5,27 +5,26 @@ import data from '../fixtures/hotel.json'
 
 describe('Hotels search test suite', () => {
     // set cookies globally
-    Cypress.Cookies.defaults({
-        preserve: 'JSESSIONID'
-    })
+    // Cypress.Cookies.defaults({
+    //     preserve: 'JSESSIONID'
+    // })
 
-    before(() => {
-        cy.intercept('GET', 'https://cheapflightsfareshelp.zendesk.com/*', req => {
-            req.destroy()
-            req.alias = 'chat'
-        })
-        cy.visit('/')
-        cy.wait('@chat')
-        signup.menuSignin().click()
-        signup.tfUid().type(data.uid)
-        signup.tfPin().type(data.pin)
-        signup.btnSignup().click()
-    })
+    // before(() => {
+    //     // cy.intercept('GET', 'https://cheapflightsfareshelp.zendesk.com/*', req => {
+    //     //     req.destroy()
+    //     //     req.alias = 'chat'
+    //     // })
+    //     cy.visit('/')
+    //     // cy.wait('@chat')
+    //     signup.menuSignin().click()
+    //     signup.tfUid().type(data.uid)
+    //     signup.tfPin().type(data.pin)
+    //     signup.btnSignup().click()
+    // })
 
     beforeEach(() => {
-        // set cookies locally
-        // Cypress.Cookies.preserveOnce('JSESSIONID')
-        hotelSearch.tabHotel().click()
+        cy.visit('')
+        hotelSearch.tabHotel().click({force: true})
         hotelSearch.tabHotel().invoke('attr', 'class').should('include', 'active')
     })
 
@@ -122,6 +121,9 @@ describe('Hotels search test suite', () => {
         hotelSearch.ddlStarRating().select('Five Star')
             .find('option:selected')
             .invoke('text')
-            .then(t => expect(t.trim()).to.eq('Five Star'))
+            .invoke('trim')
+            .should('eq', 'Five Star')
+            /** another method */
+            // .then(t => expect(t.trim()).to.eq('Five Star'))
     })
 })

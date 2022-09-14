@@ -1,0 +1,18 @@
+{
+  "vehicleType": [
+    "Car Type",
+    "Compact",
+    "Midsize",
+    "Standard",
+    "Fullsize",
+    "Economy",
+    "Premium",
+    "Luxury",
+    "Mini",
+    "Minivan",
+    "4 x 4",
+    "Convertible",
+    "Any Pick Up",
+    "Green"
+  ]
+}

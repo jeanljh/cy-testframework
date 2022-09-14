@@ -42,7 +42,7 @@ describe('Flights search test suite', () => {
         flightSearch.txtInfo().should('not.exist')
     })
     it('Test select passengers', () => {
-        cy.SelectPerson(data.person)
+        cy.selectPerson(data.person)
     })
     it('Test origin field', () => {
         flightSearch.tfFromCity()
