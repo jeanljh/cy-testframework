@@ -26,7 +26,7 @@ jobs:
           $(npm bin)/cypress verify
           
       - name: Remove json result files
-        uses: JesseTG/rm@v1
+        uses: JesseTG/rm@v1.0.2
         with:
           path: ./cypress/results/json
       
