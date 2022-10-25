@@ -15,17 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'jeanljh',
-              repo: 'cy-api',
-              workflow_id: 'main.yml',
-              ref: 'master'
-            })
-            
       - name: Checkout
         uses: actions/checkout@v3
         
