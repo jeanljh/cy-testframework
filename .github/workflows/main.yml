@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: master
+#   push:
+#     branches: master
   pull_request:
     branches: master
   schedule:
@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
         
       - name: Install a project with a clean slate
         run: |
@@ -46,7 +46,7 @@ jobs:
         run: npm run report:gen
         
       - name: Deploy report to GitHub pages
-        uses: peaceiris/actions-gh-pages@v3.7.3
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
