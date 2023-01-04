@@ -25,6 +25,5 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://www.cheapflightsfares.com/',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
-    // experimentalSessionAndOrigin: true
   },
 })
