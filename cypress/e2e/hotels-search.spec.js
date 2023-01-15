@@ -3,6 +3,8 @@ import signup from '../pageobjects/signup'
 import hotelSearch from '../pageobjects/hotel-search'
 import data from '../fixtures/hotel.json'
 
+const { _ } = Cypress
+
 describe('Hotels search test suite', () => {
     // set cookies globally
     // Cypress.Cookies.defaults({
@@ -65,7 +67,7 @@ describe('Hotels search test suite', () => {
         hotelSearch.tfGuestForm().should('have.prop', 'placeholder', '1 Room, 2 Adults, 0 Child').click()
 
         // add room
-        Cypress._.times(4, () => hotelSearch.btnAddRoom().click({ force: true }))
+        _.times(4, () => hotelSearch.btnAddRoom().click({ force: true }))
 
         // method 1
         // const arrAdults = []
@@ -77,12 +79,12 @@ describe('Hotels search test suite', () => {
 
         // method 2
         hotelSearch.ddlSelectAdults().find(':selected')
-            .then(e => Cypress._.map(e.text(), Number))
-            .then(n => Cypress._.sum(n))
+            .then(e => _.map(e.text(), Number))
+            .then(n => _.sum(n))
             .as('totalAdults')
         hotelSearch.ddlSelectChild().find(':selected')
-            .then(e => Cypress._.map(e.text(), Number))
-            .then(n => Cypress._.sum(n))
+            .then(e => _.map(e.text(), Number))
+            .then(n => _.sum(n))
             .as('totalChildren')
 
         cy.get('@totalAdults').then(ta => {
@@ -92,15 +94,15 @@ describe('Hotels search test suite', () => {
         })
 
         // delete room
-        Cypress._.times(4, () => hotelSearch.btnRemoveRoom().click({ force: true }))
+        _.times(4, () => hotelSearch.btnRemoveRoom().click({ force: true }))
 
         hotelSearch.ddlSelectAdults().find(':selected')
-            .then(e => Cypress._.map(e.text(), Number))
-            .then(n => Cypress._.sum(n))
+            .then(e => _.map(e.text(), Number))
+            .then(n => _.sum(n))
             .as('totalAdults')
         hotelSearch.ddlSelectChild().find(':selected')
-            .then(e => Cypress._.map(e.text(), Number))
-            .then(n => Cypress._.sum(n))
+            .then(e => _.map(e.text(), Number))
+            .then(n => _.sum(n))
             .as('totalChildren')
 
         cy.get('@totalAdults').then(ta => {
