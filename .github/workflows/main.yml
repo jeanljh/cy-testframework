@@ -17,13 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
-      # - name: Install a project with a clean slate
-      #   run: |
-      #     npm ci
-      #     $(npm bin)/cypress cache path
-      #     $(npm bin)/cypress cache list
-      #     $(npm bin)/cypress verify
           
       - name: Remove json result files
         uses: JesseTG/rm@v1.0.2
@@ -32,16 +25,23 @@ jobs:
 
       - name: Install and run Cypress tests
         uses: cypress-io/github-action@v5
+        with:
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
-      
-      # - name: Run Cypress tests
-      #   run: npm run test:chrome
-      #   continue-on-error: true
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: public/videos
         
-      - name: Copy test execution videos
-        run: |
-          mkdir public
-          cp -r cypress/videos public/videos
+      # - name: Copy test execution videos
+      #   run: |
+      #     mkdir public
+      #     cp -r cypress/videos public/videos
       
       - name: Merge test results into one
         run: npm run report:merge
