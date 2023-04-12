@@ -2,12 +2,10 @@ name: CI
 
 on:
   push:
-    branches: master
-  pull_request:
-    branches: master
+    branches:
+    - "*"
   # schedule:
   #   - cron: '0 0 * * *' 
-
   workflow_dispatch:
 
 jobs:
