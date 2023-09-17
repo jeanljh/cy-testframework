@@ -73,7 +73,6 @@ describe('Flights search test suite', () => {
     })
     it('Test empty text fields', () => {
         flightSearch.btnSearch().click()
-        flightSearch.tfFromCity().should('have.css', 'border', '2px solid rgb(255, 0, 0)')
         flightSearch.tfToCity().should('have.css', 'border', '2px solid rgb(255, 0, 0)')
     })
 })

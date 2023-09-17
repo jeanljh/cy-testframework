@@ -48,6 +48,7 @@ jobs:
         run: npm run report:gen
         
       - name: Deploy report to GitHub pages
+        if: github.actor != 'dependabot[bot]'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
