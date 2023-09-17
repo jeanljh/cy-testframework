@@ -60,11 +60,11 @@ Cypress.Commands.add('setGuest', (id, room, adult, child) => {
 
     hotelSearchPO.ddlSelectAdults().find(':selected')
     .then(e => map(e.text(), Number))
-    .then(n => sum(n))
+    .then(sum)
     .as('totalAdults')
     hotelSearchPO.ddlSelectChild().find(':selected')
     .then(e => map(e.text(), Number))
-    .then(n => sum(n))
+    .then(sum)
     .as('totalChildren')
 
     cy.get('@totalAdults').then(ta => {
