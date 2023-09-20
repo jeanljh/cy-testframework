@@ -22,7 +22,7 @@ jobs:
           path: ./cypress/results/json
 
       - name: Install and run Cypress tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           record: true
         env:
