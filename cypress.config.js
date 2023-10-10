@@ -1,7 +1,8 @@
 const { defineConfig } = require('cypress')
+require('dotenv').config()
 
 module.exports = defineConfig({
-  projectId: 'd8p28t',
+  projectId: process.env.CYPRESS_PROJECT_ID,
   defaultCommandTimeout: 10000,
   viewportHeight: 1080,
   viewportWidth: 1920,
@@ -10,8 +11,6 @@ module.exports = defineConfig({
     configFile: 'reporter-config.json',
   },
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
       let val
       on('task', {
@@ -19,8 +18,8 @@ module.exports = defineConfig({
           console.log(msg)
           return null
         },
-        setVal: input => val = input ?? null,
-        getVal: () => val ?? null
+        setVal: input => (val = input ?? null),
+        getVal: () => val ?? null,
       })
     },
     baseUrl: 'https://www.cheapflightsfares.com/',
