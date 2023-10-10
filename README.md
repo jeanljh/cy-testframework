@@ -1,4 +1,4 @@
-[![CI](https://github.com/jeanljh/cy-testframework/actions/workflows/main.yml/badge.svg)](https://github.com/jeanljh/cy-testframework/actions/workflows/main.yml)
+[![test](https://github.com/jeanljh/cy-testframework/actions/workflows/test.yml/badge.svg)](https://github.com/jeanljh/cy-testframework/actions/workflows/test.yml)
 
 Example of automation test framework design by using Cypress, Page Object Model & Mochawesome report.
 
