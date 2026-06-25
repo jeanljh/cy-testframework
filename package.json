@@ -29,7 +29,7 @@
     "cypress-multi-reporters": "^1.6.4",
     "del-cli": "^5.1.0",
     "dotenv": "^16.4.5",
-    "mochawesome": "^7.1.3",
+    "mochawesome": "^7.1.4",
     "mochawesome-merge": "^4.3.0",
     "prettier": "^3.3.3"
   }
