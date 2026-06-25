@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
           
       - name: Remove json result files
         uses: JesseTG/rm@v1.0.3
@@ -22,7 +22,7 @@ jobs:
           path: ./cypress/results/json
 
       - name: Install and run Cypress tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           record: true
         env:
