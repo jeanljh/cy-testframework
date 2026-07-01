@@ -30,7 +30,7 @@
     "del-cli": "^5.1.0",
     "dotenv": "^17.2.3",
     "mochawesome": "^7.1.4",
-    "mochawesome-merge": "^5.1.0",
+    "mochawesome-merge": "^5.1.1",
     "prettier": "^3.3.3"
   }
 }
