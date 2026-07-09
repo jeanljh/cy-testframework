@@ -4,8 +4,8 @@
     "tabWidth": 2,
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingComma": "all",
     "bracketSpacing": true,
     "bracketSameLine": true,
-    "arrowParens": "avoid"
+    "arrowParens": "always"
 }

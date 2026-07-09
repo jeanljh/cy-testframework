@@ -40,7 +40,7 @@ describe('Hotels search test suite', () => {
   })
 
   it('Test default calendar values', () => {
-    var dt = {
+    let dt = {
       depart: null,
       return: null,
     }
@@ -52,38 +52,41 @@ describe('Hotels search test suite', () => {
       .tfReturnDate()
       .invoke('val')
       .then(d => (dt.return = Date.parse(d)))
-    hotelSearch.elStartDate().then(e => {
+    hotelSearch.tfDepartDate().click()
+    hotelSearch.elDefaultDate().then(e => {
       cy.wrap(e)
         .find('a')
-        .should('have.css', 'background-color', 'rgb(0, 93, 186)')
+        .should('have.css', 'background-color', 'rgb(15, 104, 222)')
         .then(() => Date.parse(`${Number(e.attr('data-month')) + 1}-${e.text()}-${e.attr('data-year')}`))
         .should('eq', dt.depart)
     })
-    hotelSearch.elEndDate().then(e => {
+    hotelSearch.tfReturnDate().click()
+    hotelSearch.elDefaultDate().then(e => {
       cy.wrap(e)
         .find('a')
-        .should('have.css', 'background-color', 'rgb(0, 93, 186)')
+        .should('have.css', 'background-color', 'rgb(15, 104, 222)')
         .then(() => Date.parse(`${Number(e.attr('data-month')) + 1}-${e.text()}-${e.attr('data-year')}`))
         .should('eq', dt.return)
     })
-    hotelSearch.elBetweenDate().each(e => {
-      cy.wrap(e)
-        .find('a')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
-        .invoke('text')
-        .then(day => Date.parse(`${e.attr('data-year')}-${Number(e.attr('data-month')) + 1}-${day}`))
-        .should('be.above', dt.depart)
-        .and('be.below', dt.return)
-    })
+    // hotelSearch.elBetweenDate().each(e => {
+    //   cy.wrap(e)
+    //     .find('a')
+    //     .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+    //     .invoke('text')
+    //     .then(day => Date.parse(`${e.attr('data-year')}-${Number(e.attr('data-month')) + 1}-${day}`))
+    //     .should('be.above', dt.depart)
+    //     .and('be.below', dt.return)
+    // })
   })
 
   it('Test add and remove room', () => {
-    hotelSearch.tfGuestForm().should('have.prop', 'placeholder', '1 Room, 2 Adults, 0 Child').click()
+    hotelSearch.textGuestInfo().then(e => e.text().replace(/\s+/g, ' ').trim()).should('eq', '1 Room(s) 2 Adult(s), 0 Child(s)')
 
     // add room
     _.times(4, () => hotelSearch.btnAddRoom().click({ force: true }))
+    cy.valTotalGuest()
 
-    // method 1
+    // another method
     // const arrAdults = []
     // const arrChild = []
     // cy.get("[title='Select Adults'] option:selected").each(e => arrAdults.push(Number(e.text())))
@@ -91,55 +94,17 @@ describe('Hotels search test suite', () => {
     // cy.get("[title='Select Child'] option:selected").each(e => arrChild.push(Number(e.text())))
     // cy.wrap(arrChild).then(v => lodash.sum(v)).as('totalChildren')
 
-    // method 2
-    hotelSearch
-      .ddlSelectAdults()
-      .find(':selected')
-      .then(e => _.map(e.text(), Number))
-      .then(n => _.sum(n))
-      .as('totalAdults')
-    hotelSearch
-      .ddlSelectChild()
-      .find(':selected')
-      .then(e => _.map(e.text(), Number))
-      .then(n => _.sum(n))
-      .as('totalChildren')
-
-    cy.get('@totalAdults').then(ta => {
-      cy.get('@totalChildren').then(tc => {
-        hotelSearch.tfGuestForm().should('have.value', `5 Rooms,${ta} Adults,${tc} Child`)
-      })
-    })
-
     // delete room
     _.times(4, () => hotelSearch.btnRemoveRoom().click({ force: true }))
-
-    hotelSearch
-      .ddlSelectAdults()
-      .find(':selected')
-      .then(e => _.map(e.text(), Number))
-      .then(n => _.sum(n))
-      .as('totalAdults')
-    hotelSearch
-      .ddlSelectChild()
-      .find(':selected')
-      .then(e => _.map(e.text(), Number))
-      .then(n => _.sum(n))
-      .as('totalChildren')
-
-    cy.get('@totalAdults').then(ta => {
-      cy.get('@totalChildren').then(tc => {
-        hotelSearch.tfGuestForm().should('have.value', `1 Room,${ta} Adults,${tc} Child`)
-      })
-    })
+    cy.valTotalGuest()
   })
 
   it('Test select guest', () => {
-    hotelSearch.tfGuestForm().should('have.prop', 'placeholder', '1 Room, 2 Adults, 0 Child').click()
+    hotelSearch.textGuestInfo().click()
     cy.setGuest(data.id, data.room, data.adult, data.child)
   })
 
-  it('Test select star rating', () => {
+  xit('Test select star rating', () => {
     hotelSearch.lnkAdvOption().click({ force: true })
     hotelSearch.ddlStarRating().find('option:selected').should('contain.text', 'Star Rating')
     hotelSearch

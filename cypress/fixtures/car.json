@@ -53,5 +53,9 @@
         "Thrifty Car Rental",
         "Tu Florida Rental Car",
         "Usave Auto"
-      ]
+    ],
+    "pickUpTime": "07:00 am",
+    "dropOffTime": "07:00 pm",
+    "pickupDate": "2027-05-20",
+    "dropoffDate": "2027-05-25"
 }
