@@ -31,7 +31,7 @@
     "dotenv": "^18.0.5",
     "mochawesome": "^8.1.1",
     "mochawesome-merge": "^5.1.1",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.10"
   },
   "allowScripts": {
     "cypress@15.18.0": true
